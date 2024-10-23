@@ -858,62 +858,37 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
 
 
 
-// Projects slider code
+/* ---------------------------------------------- /*
+ * Project slider images
+ /* ---------------------------------------------- */
 
-        var timeOut = 2000;
-        var slideIndex = 0;
-        var autoOn = true;
+let slideIndex = 1;
+showSlides(slideIndex);
 
-        autoSlides();
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-        function autoSlides() {
-            timeOut = timeOut - 20;
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-            if (autoOn == true && timeOut < 0) {
-                showSlides();
-            }
-            setTimeout(autoSlides, 20);
-        }
-
-        function prevSlide() {
-
-            timeOut = 2000;
-
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slideIndex--;
-
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-            if (slideIndex == 0) {
-                slideIndex = 3
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-
-        function showSlides() {
-
-            timeOut = 2000;
-
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slideIndex++;
-
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  let captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}

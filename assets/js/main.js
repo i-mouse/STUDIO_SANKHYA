@@ -892,7 +892,7 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
                 slideIndex = 1
             }
             if (slideIndex == 0) {
-                slideIndex = 15
+                slideIndex = 3
             }
             slides[slideIndex - 1].style.display = "block";
             dots[slideIndex - 1].className += " active";
